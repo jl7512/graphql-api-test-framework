@@ -1,0 +1,127 @@
+schema {
+  query: Queries
+  mutation: Mutations
+}
+
+#
+type DeleteResult {
+  #
+  affected: Int
+}
+
+#
+input Asd {
+  #
+  skillId: Int
+
+  #
+  weight: Float
+}
+
+#
+type RoleSkill {
+  #
+  createdAt: DateTime
+
+  #
+  deletedAt: DateTime
+
+  #
+  id: Int
+
+  #
+  roleId: Int
+
+  #
+  skill: Skill
+
+  #
+  skillId: Int
+
+  #
+  updatedAt: DateTime
+
+  #
+  weight: Float
+}
+
+#
+type Skill {
+  #
+  createdAt: DateTime
+
+  #
+  deletedAt: DateTime
+
+  #
+  id: Int
+
+  #
+  name: String
+
+  #
+  updatedAt: DateTime
+}
+
+# The `DateTime` scalar type represents a DateTime. The DateTime is serialized as an RFC 3339 quoted string
+scalar DateTime
+
+#
+type Role {
+  #
+  createdAt: DateTime
+
+  #
+  deletedAt: DateTime
+
+  #
+  id: Int
+
+  #
+  name: String
+
+  #
+  skills: [RoleSkill]
+
+  #
+  updatedAt: DateTime
+}
+
+#
+type Queries {
+  #
+  RoleFindOne(id: Int, name: String): Role
+
+  #
+  Roles: [Role]
+
+  #
+  SkillFindOne(id: Int, name: String): Skill
+
+  #
+  Skills: [Skill]
+}
+
+#
+type Mutations {
+  #
+  RoleCreateOne(name: String): Role
+
+  #
+  RoleDeleteOne(id: Int): DeleteResult
+
+  #
+  RoleSkillsOverwrite(roleId: Int, skills: [Asd]): [RoleSkill]
+
+  #
+  RoleUpdateOne(name: String, id: Int): Role
+
+  #
+  SkillCreateOne(name: String): Skill
+
+  #
+  SkillDeleteOne(id: Int): DeleteResult
+
+  #
+  SkillUpdateOne(id: Int, name: String): Skill
+}
